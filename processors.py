@@ -93,6 +93,29 @@ class OtsuThresholder:
         return thresholded
 
 
+class TruncThresholder:
+    """Thresholds image by using the trunc method
+
+    Params
+    ------
+    image   is the image to be Thresholded
+
+    Returns
+    -------
+    Thresholded image
+    """
+    def __init__(self, thresh1 = 127, thresh2 = 255, output_process = False):
+        self.output_process = output_process
+        self.thresh1 = thresh1
+        self.thresh2 = thresh2
+
+
+    def __call__(self, image):
+        thresholded = cv2.threshold(image, self.thresh1, self.thresh2, cv2.THRESH_TRUNC)[1]
+        if self.output_process: cv2.imwrite('output/thresholded.jpg', thresholded)
+        return thresholded
+
+
 class FastDenoiser:
     """Denoises image by using the fastNlMeansDenoising method
 

@@ -6,7 +6,7 @@ from scan import DocScanner
 from ocr import ImageExtractor
 
 def scan_ocr(img_path, is_interactive_mode):
-    from processors import Resizer, Enhancer, GrayScaler, BlurDenoiser, FastDenoiser, OtsuThresholder, Dilater, Eroder, Opener2
+    from processors import GrayScaler, TruncThresholder
     
     scanner = DocScanner(is_interactive_mode)
     extractor = ImageExtractor()
@@ -14,11 +14,11 @@ def scan_ocr(img_path, is_interactive_mode):
     need_output_process = True
     processors = [
         # Resizer(height = 2000, output_process = need_output_process),
-        Enhancer(output_process = need_output_process),
+        # Enhancer(output_process = need_output_process),
         GrayScaler(output_process = need_output_process),
         # BlurDenoiser(strength = 9, output_process = need_output_process),
-        FastDenoiser(strength = 9, output_process = need_output_process),
-        OtsuThresholder(output_process = need_output_process),
+        # FastDenoiser(strength = 9, output_process = need_output_process),
+        TruncThresholder(output_process = need_output_process),
         # Dilater(output_process = need_output_process),
         # Eroder(output_process = need_output_process),
         # Opener2(output_process = need_output_process),
